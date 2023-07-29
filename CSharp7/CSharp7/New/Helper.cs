@@ -9,44 +9,35 @@ namespace Daneshkar.New
 {
     internal class Helper
     {
-        int z = 0;
         internal void Run()
         {
-            z++;
-            var x = 10;
-            ActionONX(x);
+            int x = 10;
+            int y = 0;
+            Swap(ref x,ref y);
 
-            var y = 10;
-            ActionONY(ref y);
-            //var y = 0;
-            //Swap(x, y);
-
-            //Console.WriteLine(x);
-            //Console.WriteLine(y);
-
+            char xs = 'a';
+            char ys = 'b';
+            Swap(ref xs, ref ys);
         }
-        public void ActionONX(int a)
+
+        //public void Swap(ref int x,ref int y)
+        //{
+        //    int z = x;
+        //    x = y;
+        //    y = z;
+        //}
+        //public void Swap(ref char x, ref char y)
+        //{
+        //    char z = x;
+        //    x = y;
+        //    y = z;
+        //}
+        public void Swap<Type>(ref Type x, ref Type y)
         {
-            z++;
-            //x = 5;
-            a++;
+            Type z = x;
+            x = y; 
+            y = z;
         }
-        public void ActionONY(ref int b)
-        {
-            b++;
-            ActionOnY2(ref b);
-        }
-        public void ActionOnY2(ref int c)
-        {
-            c *= 2;
-        }
-
-        public void Swap(int x, int y)
-        {
-            y++;
-            x++;
-        }
-
     }
 
 }
