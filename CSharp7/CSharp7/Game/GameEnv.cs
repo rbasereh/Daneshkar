@@ -8,7 +8,8 @@ namespace Daneshkar
     {
 
         string[,] Mat;
-
+        List<ILocationObject> locationObjects;
+        List<Box> Boxes;
         public GameEnv()
         {
             Settings.MapSize = 20;
@@ -17,6 +18,14 @@ namespace Daneshkar
             Mat = new string[Settings.MapSize + 1, Settings.MapSize + 1];
         }
 
+        private void SetObjectsLocation<T>(List<T> objects)
+            where T : ILocationObject,new()
+        {
+            foreach (var obj in objects)
+            {
+                Mat[obj.X, obj.Y] = obj.Icon();
+            }
+        }
         private void SetObjectsLocation(List<ILocationObject> objects)
         {
             foreach (var obj in objects)
@@ -72,24 +81,35 @@ namespace Daneshkar
         //        Box box1 = new(15, 15);
         //    }
         //}
+        public void AddLocationObjects<T>(T obj)
+            where T : ILocationObject
+        {
+            locationObjects.Add(obj);
+        }
+
 
         public void Run()
         {
 
-            List<ILocationObject> locationObjects = new List<ILocationObject>();
+            locationObjects = new List<ILocationObject>();
             Player player = new("me", 10, 10);
-            locationObjects.Add(player);
 
             Box box1 = new(15, 15);
             Box box2 = new(5, 5);
             Hole hole1 = new(7, 7);
             Hole hole2 = new(7, 15);
             Hole hole3 = new(15, 9);
-            locationObjects.Add(box1);
-            locationObjects.Add(box2);
-            locationObjects.Add(hole1);
-            locationObjects.Add(hole2);
-            locationObjects.Add(hole3);
+
+
+            AddLocationObjects(player);
+            AddLocationObjects(box1);
+            AddLocationObjects(box2);
+            AddLocationObjects(hole1);
+            AddLocationObjects(hole2);
+            AddLocationObjects(hole3);
+
+            Animal animal = new();
+            //AddLocationObjects(animal);
 
 
             Display(locationObjects);

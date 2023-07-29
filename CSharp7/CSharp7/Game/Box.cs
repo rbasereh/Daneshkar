@@ -7,14 +7,18 @@ using System.Threading.Tasks;
 
 namespace Daneshkar.Game
 {
+    public class Animal
+    {
+
+    }
     public class Box : ILocationObject
     {
-        public Box(int x,int y)
+        public Box(int x, int y)
         {
             X = x;
             Y = y;
         }
-        public int X {get;set;}
+        public int X { get; set; }
 
         public int Y { get; set; }
 
@@ -27,7 +31,7 @@ namespace Daneshkar.Game
     {
         public Hole(int x, int y)
         {
-            X = x; 
+            X = x;
             Y = y;
         }
         public int X { get; set; }
