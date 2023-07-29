@@ -20,7 +20,7 @@ namespace Daneshkar.New
             Swap(ref xs, ref ys);
         }
 
-        //public void Swap(ref int x,ref int y)
+        //public void Swap(ref int x, ref int y)
         //{
         //    int z = x;
         //    x = y;
@@ -32,12 +32,15 @@ namespace Daneshkar.New
         //    x = y;
         //    y = z;
         //}
-        public void Swap<Type>(ref Type x, ref Type y)
+        public void Swap<TInput>(ref TInput x, ref TInput y)
         {
-            Type z = x;
-            x = y; 
+            TInput z = x;
+            x = y;
             y = z;
         }
+
     }
+
+
 
 }
