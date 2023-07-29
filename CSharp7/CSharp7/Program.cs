@@ -1,4 +1,6 @@
-﻿namespace Daneshkar
+﻿using Daneshkar.New;
+
+namespace Daneshkar
 {
     internal class Program
     {
@@ -7,8 +9,11 @@
             var pcout = Environment.ProcessorCount;
             //var LogicalDrives = Environment.GetLogicalDrives();
 
-            GameEnv gameEnv = new GameEnv();
-            gameEnv.Run();
+            //GameEnv gameEnv = new GameEnv();
+            //gameEnv.Run();
+
+            Helper helper = new Helper();
+            helper.Run();
         }
     }
 }
