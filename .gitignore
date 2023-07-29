@@ -2,6 +2,6 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/CSharp6/.vs/CSharp6
-/CSharp6/CSharp6/obj
-/CSharp6/CSharp6/bin/Debug/net7.0
+/**/bin
+/**/.vs
+/**/obj
