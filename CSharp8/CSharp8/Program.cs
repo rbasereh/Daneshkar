@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Data;
+﻿using System.Data;
 
 namespace CSharp8
 {
@@ -7,9 +6,10 @@ namespace CSharp8
     {
         public static IEnumerable<int> GetNumber()
         {
-            List<int> ints = new List<int>();
+            MyListCollection<int> ints = new MyListCollection<int>();
             ints.Add(1);
             ints.Add(2);
+            ints.CustomMethod();
             return ints;
         }
         public static ICollection<int> GetNumber2()
@@ -39,6 +39,17 @@ namespace CSharp8
             var result3 = GetNumber3();
             result3.Add(2);
             result3.Remove(10);
+
+            List<string> strings = new List<string>();
+            strings.Add("a");
+
+            Dictionary<string, string> stringDic = new();
+
+            stringDic.Add("a", "Ali");
+            stringDic.Add("b", "hasan");
+            stringDic.Add("cdfsdfsdf", "hasan");
+
+            var result = stringDic["a"];
 
             //Stack
             //Queue
@@ -90,35 +101,6 @@ namespace CSharp8
             validator.IsValid(new char[] { '{', '[', '}', ']' });
         }
     }
-
-    public class CustomQueue<T>
-    {
-        T[] items = new T[10];
-        int Head = 0;
-        int Back = 0;
-
-        internal void Enqueue(T item)
-        {
-            if (Back > items.Length)
-                Array.Resize(ref items, items.Length + 10);
-            items[Back] = item;
-            Back++;
-        }
-        internal T Dequeue()
-        {
-            T item = items[Head];
-            items[Head] = default(T);
-            Head++;
-            return item;
-        }
-
-        internal T Peek()
-        {
-            T item = items[Head];
-            return item;
-        }
-    }
-
 
 
 }
