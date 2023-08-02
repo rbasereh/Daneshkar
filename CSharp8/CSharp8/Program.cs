@@ -61,14 +61,8 @@ namespace CSharp8
 
             ints.Add(1);
 
-
-
-
-
-
             var stack = new CustomStack<int>();
             var stack2 = new CustomStack<string>();
-
 
             Queue<int> queue = new Queue<int>();
             queue.Enqueue(1);
@@ -99,8 +93,44 @@ namespace CSharp8
             //validator.IsValid(new char[] { '(', '[', ']', '}', '{', ')' });
 
             validator.IsValid(new char[] { '{', '[', '}', ']' });
+
+            //Calculator<Manager> calculator = new();
+            //Calculator<Employee> calculator2 = new();
+            //Calculator<Person> calculator4 = new();
+            //Calculator<Product> calculator3 = new();
+            //Calculator<PlayerStruct> calculator5 = new();
         }
     }
+    public interface ICalc
+    { }
+    public abstract class Person
+    { }
+    public class Manager : Person
+    { }
+    public class Employee : Person, ICalc
+    { }
+    public class Product : ICalc
+    { }
+    public struct PlayerStruct
+    {
 
+    }
+
+    public class Calculator<T, T2>
+        where T : Person, new()
+        where T2 : T, ICalc
+        //where T2 : Person, ICalc, new()
+    {
+        public T Calc()
+        {
+            //T newItem = new();
+            //ICalc calc = newItem;
+
+            //Manager manager = new();
+            //Person person = manager;
+
+            return default(T);
+        }
+    }
 
 }
