@@ -7,26 +7,23 @@
 
             try
             {
-                GetFromDicSample();
-                Console.WriteLine("GetFromDicSample");
+                //GetFromDicSample();
+                //Console.WriteLine("GetFromDicSample");
                 
-                AddToDicSample();
-                Console.WriteLine("AddToDicSample");
+                //AddToDicSample();
+                //Console.WriteLine("AddToDicSample");
                 
-                WriteToFile();
-                Console.WriteLine("WriteToFile");
+                //WriteToFile();
+                //Console.WriteLine("WriteToFile");
                 
                 ReadFromFile();
                 Console.WriteLine("ReadFromFile");
             }
             catch (Exception ex)
             {
+                //ex.Message
                 Console.WriteLine("Error ....!!!!");
             }
-
-
-
-
 
         }
 
