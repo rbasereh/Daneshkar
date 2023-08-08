@@ -54,8 +54,17 @@ namespace CSharp10
             //برای توسعه باز
             //S O L I D
 
+            //Action<
+            //Func<>
+
         }
 
+        public int CalcReward(Func<int, int> strategy, int salary)
+        {
+            var reward = strategy(salary);
+            reward = reward * 2 - 100;
+            return reward;
+        }
         public int CalcReward(RewardStrategy strategy, int salary)
         {
             var reward = strategy(salary);
@@ -78,6 +87,5 @@ namespace CSharp10
                 return SearchStrategy.LinnerSearch;
         }
     }
-
 
 }
