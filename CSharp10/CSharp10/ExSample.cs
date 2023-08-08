@@ -20,9 +20,9 @@
             int y = 100;
             Person person = new Person() { Name = "ali", NationalCode = "10" };
 
-            CheckValid(person);
             try
             {
+                CheckValid(person);
 
                 y = 10 / x;
 
@@ -37,7 +37,13 @@
             {
                 Console.WriteLine("User Error ....!!!! not found Hint");
             }
-            catch (SystemException ex)
+            catch (Exception ex) when 
+                        (  ex is DivideByZeroException 
+                        || ex is ArgumentOutOfRangeException)
+            {
+                //......
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine("System Error ....!!!!");
             }
@@ -86,6 +92,16 @@
     {
         public string NationalCode { get; set; }
         public string Name { get; set; }
+        public PersonRole Role { get; set; } 
+
     }
+    public enum PersonRole
+    {
+        Manager,
+        Employee,
+        InventoryUser,
+        Salesman
+    }
+
 
 }

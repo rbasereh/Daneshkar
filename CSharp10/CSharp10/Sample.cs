@@ -7,10 +7,14 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CSharp10
 {
+    //modifier  returnType delegateName(parameters);
+    public delegate int? SearchDelegate(List<int> list, int item);
+
     internal class Sample
     {
         public void Run()
         {
+            /*
             List<int> ints = new();
 
             Console.WriteLine("Write N Item : ");
@@ -25,57 +29,55 @@ namespace CSharp10
             Console.WriteLine("List is Sorted (Y/N) : ");
             var IsSorted = Console.ReadLine();
 
-            var SearchStrategy = Search(IsSorted);
+            //s 1 => interface
+            var SearchStrategy = GetStrategy(IsSorted);
+
+            var Result = SearchStrategy.Search(ints, findItem);
+
+            //s 2 => interface
+
+            var searchDelegate = GetStrategyByDelegate(IsSorted);
+            var result2 = searchDelegate(ints, findItem);
+            */
+
+            Person person = new() { Role = PersonRole.Manager };
+
+            int Reward;
+            int salary = 100;
+            RewardHelper rewardHelper = new();
+            var rewardStrategy = rewardHelper.GetRewardStrategy(person.Role);
+
+            Reward = CalcReward(rewardStrategy, salary);
+            //Reward = rewardStrategy(salary);
+
+            // برای تغییر بسته
+            //برای توسعه باز
+            //S O L I D
+
         }
 
-        public ISearchStrategy Search(string isSorted)
+        public int CalcReward(RewardStrategy strategy, int salary)
+        {
+            var reward = strategy(salary);
+            reward = reward * 2 - 100;
+            return reward;
+        }
+
+        public ISearchStrategy GetStrategy(string isSorted)
         {
             if (isSorted == "Y")
                 return new BinarySearch();
             else
                 return new LinnerSearch();
         }
-
-    }
-    public interface ISearchStrategy
-    {
-        int? Search(List<int> list, int item);
-
-    }
-    public class LinnerSearch : ISearchStrategy
-    {
-        public int? Search(List<int> list, int item)
+        public SearchDelegate GetStrategyByDelegate(string isSorted)
         {
-            for (int i = 0; i < list.Count; i++)
-            {
-                if (list[i] == item)
-                    return i;
-            }
-            return null;
+            if (isSorted == "Y")
+                return SearchStrategy.BinarySearch;
+            else
+                return SearchStrategy.LinnerSearch;
         }
     }
-    public class BinarySearch : ISearchStrategy
-    {
-        // 10 55 6 9 20  
-        // 6 9 10 20 55 
-        public int? Search(List<int> list, int item)
-        {
-            int left = 0;
-            int right = list.Count - 1;
 
-            while (left <= right)
-            {
-                int mid = left + (right - left) / 2;
 
-                if (list[mid] == item)
-                    return mid;
-
-                if (list[mid] < item)
-                    left = mid + 1;
-                else
-                    right = mid - 1;
-            }
-            return null;
-        }
-    }
 }

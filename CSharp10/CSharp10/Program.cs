@@ -6,7 +6,7 @@ namespace CSharp10
     {
         static void Main(string[] args)
         {
-            ExSample exSample = new();
+            Sample exSample = new();
             exSample.Run();
             Console.WriteLine("Hello, World!");
         }
