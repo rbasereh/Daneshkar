@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aspnetcore1", "Aspnetcore1\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspnetCoreWebApi", "AspnetCoreWebApi\AspnetCoreWebApi.csproj", "{291D2840-8651-4E59-AD13-F06185198E8A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AttributeSample", "AttributeSample\AttributeSample.csproj", "{1FC4B049-4D28-41A0-A6CE-EA0B287FF547}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{291D2840-8651-4E59-AD13-F06185198E8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{291D2840-8651-4E59-AD13-F06185198E8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{291D2840-8651-4E59-AD13-F06185198E8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FC4B049-4D28-41A0-A6CE-EA0B287FF547}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FC4B049-4D28-41A0-A6CE-EA0B287FF547}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FC4B049-4D28-41A0-A6CE-EA0B287FF547}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FC4B049-4D28-41A0-A6CE-EA0B287FF547}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

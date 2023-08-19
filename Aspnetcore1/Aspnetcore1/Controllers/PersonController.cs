@@ -12,24 +12,29 @@ namespace Aspnetcore1.Controllers
 {
     public class PersonController : Controller
     {
-
         // GET: Person
         public async Task<IActionResult> Index()
         {
-            var listpersons = GetAllPersons();
+            var listpersons = DataBase.GetAllPersons();
             return View(listpersons);
         }
 
-        private List<Person> GetAllPersons()
+        // GET: Person/Create
+        [HttpGet]
+        public IActionResult Create()
         {
-            List<Person> persons = new()
-            {
-                new Person() { Id = 1, Name = "Ali", LName = "Sadeghi" },
-                new Person() { Id = 2, Name = "Reza", LName = "Sadeghi" },
-                new Person() { Id = 3, Name = "Hasan", LName = "Alipour" }
-            };
-            return persons;
+            return View();
         }
+
+        [HttpPost]
+        public IActionResult Create(Person person)
+        {
+            DataBase.Persons.Add(person);
+            return Redirect(nameof(Index));
+        }
+
+
+
 
         /*
         // GET: Person/Details/5
@@ -50,11 +55,7 @@ namespace Aspnetcore1.Controllers
             return View(person);
         }
 
-        // GET: Person/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
+       
 
         // POST: Person/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
