@@ -15,7 +15,6 @@ namespace Aspnetcore1
             builder.Services.AddControllersWithViews();
             var app = builder.Build();
             
-            app.Use<LogMiddleware>();
             
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Diagnostics.Contracts;
 
 namespace AspnetCoreWebApi.Controllers
 {
@@ -16,7 +17,8 @@ namespace AspnetCoreWebApi.Controllers
         [HttpGet]
         public IEnumerable<Person> Get()
         {
-            var x = this.HttpContext.Request;
+            int y = 0;
+            int x = 10 / y;
 
             var listpersons = GetAllPersons();
             return listpersons;

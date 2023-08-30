@@ -12,10 +12,16 @@ namespace Aspnetcore1.Controllers
 {
     public class PersonController : Controller
     {
+        DataBase database { get; set; }
+        public PersonController()
+        {
+            database = new DataBase();
+        }
+
         // GET: Person
         public async Task<IActionResult> Index()
         {
-            var listpersons = DataBase.GetAllPersons();
+            var listpersons = database.GetAllPersons();
             return View(listpersons);
         }
 

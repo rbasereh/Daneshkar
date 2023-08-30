@@ -11,6 +11,7 @@ namespace AspnetCoreWebApi
 
             // Add services to the container.
             builder.Services.AddControllers();
+            builder.Services.AddScoped<LogMiddleware>();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -19,6 +20,7 @@ namespace AspnetCoreWebApi
 
             //register Imiddleware 
 
+            app.UseMiddleware<ExceptionMiddleware>();
             app.UseMiddleware<LogMiddleware>();
             app.UseMiddleware<AuthMiddleware>();
             // Configure the HTTP request pipeline.

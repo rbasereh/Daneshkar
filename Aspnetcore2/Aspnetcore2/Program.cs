@@ -1,3 +1,5 @@
+using Aspnetcore2.Controllers;
+
 namespace Aspnetcore2
 {
     public class Program
@@ -8,6 +10,11 @@ namespace Aspnetcore2
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddTransient<ValidationService>();
+
+            builder.Services.AddScoped<HomeServiceA>();
+            builder.Services.AddSingleton<HomeServiceB>();
+            builder.Services.AddTransient<HomeServiceC>();
 
             var app = builder.Build();
 

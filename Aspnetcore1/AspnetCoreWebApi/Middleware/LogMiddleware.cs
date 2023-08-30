@@ -4,11 +4,10 @@
     {
         public static List<string> Requests = new List<string>();
     }
-
-    public class LogMiddleware //: IMiddleware
+    public class ExceptionMiddleware //: IMiddleware
     {
 
-        public LogMiddleware(RequestDelegate next)
+        public ExceptionMiddleware(RequestDelegate next)
         {
             Next = next;
         }
@@ -17,14 +16,31 @@
 
         public async Task InvokeAsync(HttpContext context)
         {
-            Console.WriteLine($"before Log middleware" + context.Request.Path);
+            Console.WriteLine($"before ex middleware" + context.Request.Path);
             //logic
             await Next(context);
-            Console.WriteLine($"after Log middleware" + context.Request.Path);
+            //try
+            //{
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine(ex.ToString());
+
+            //}
+            Console.WriteLine($"after ex middleware" + context.Request.Path);
+        }
+    }
+    public class LogMiddleware : IMiddleware
+    {
+        public async Task InvokeAsync(HttpContext context, RequestDelegate next)
+        {
+            Console.WriteLine($"Before Auth middleware" + context.Request.Path);
+            await next(context);
+            Console.WriteLine($"after Auth middleware" + context.Request.Path);
         }
     }
 
-    public class AuthMiddleware 
+    public class AuthMiddleware
     {
 
         public AuthMiddleware(RequestDelegate next)
