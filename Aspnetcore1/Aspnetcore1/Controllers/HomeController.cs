@@ -1,4 +1,6 @@
-﻿using Aspnetcore1.Models;
+﻿using Aspnetcore1.Data;
+using Aspnetcore1.Models;
+using Azure.Core;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -17,7 +19,7 @@ namespace Aspnetcore1.Controllers
         }
         public IActionResult FirstView()
         {
-            return View();  
+            return View();
         }
     }
 }

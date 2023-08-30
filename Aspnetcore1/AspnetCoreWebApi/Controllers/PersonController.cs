@@ -8,9 +8,16 @@ namespace AspnetCoreWebApi.Controllers
     [ApiController]
     public class PersonController : ControllerBase
     {
+        public PersonController()
+        {
+                
+        }
+
         [HttpGet]
         public IEnumerable<Person> Get()
         {
+            var x = this.HttpContext.Request;
+
             var listpersons = GetAllPersons();
             return listpersons;
         }

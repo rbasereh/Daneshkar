@@ -2,6 +2,10 @@
 
 namespace Aspnetcore1.Data
 {
+    public static class LogDataBase
+    {
+        public static List<string> Requests = new List<string>();
+    }
     public static class DataBase
     {
         public static List<Person> Persons { get; set; } = new List<Person>();
