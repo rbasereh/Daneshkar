@@ -5,6 +5,8 @@ VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "aspnetcore3", "aspnetcore3\aspnetcore3.csproj", "{0F914B0B-A57C-4B43-B972-CAC7766DF63B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinqSample", "LinqSample\LinqSample.csproj", "{ECE98904-5FF2-4666-8ACC-9332FD8FC9B4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{0F914B0B-A57C-4B43-B972-CAC7766DF63B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F914B0B-A57C-4B43-B972-CAC7766DF63B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F914B0B-A57C-4B43-B972-CAC7766DF63B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECE98904-5FF2-4666-8ACC-9332FD8FC9B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECE98904-5FF2-4666-8ACC-9332FD8FC9B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECE98904-5FF2-4666-8ACC-9332FD8FC9B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECE98904-5FF2-4666-8ACC-9332FD8FC9B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
