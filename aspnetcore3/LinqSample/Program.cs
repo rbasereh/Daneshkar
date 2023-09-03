@@ -4,6 +4,14 @@
     {
         static void Main(string[] args)
         {
+
+            LinqSample linqSample = new();
+            linqSample.SkipSample();
+            linqSample.AggregateSample();
+            linqSample.SelectSample();
+            linqSample.AnySample();
+            linqSample.AllSample();
+
             SearchArrayList();
             SearchPerson("");
 
@@ -98,6 +106,9 @@
         {
             return person.Name == "hasan" && person.Age < 30;
         }
+
+        public static bool IsValid2(Person person) 
+            => person.Name == "hasan" && person.Age < 30;
     }
     public class Person
     {
