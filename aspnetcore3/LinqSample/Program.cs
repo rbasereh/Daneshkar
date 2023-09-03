@@ -23,7 +23,7 @@
                 new Person(2, "reza", 15),
                 new Person(3, "reza", 30),
                 new Person(6, "hasan", 45),
-                new Person(7, "hasan", 60),
+                new Person(6, "hasan", 60),
                 new Person(5, "hasan", 10),
                 new Person(4, "reza", 50),
             };
@@ -33,21 +33,23 @@
             //    if (personList[i].Name == name)
             //        return personList[i];
             //}
+            Func<Person, bool> isvalidfunc = IsValid;
 
             Person? result =
                  personList
-                 .Where(person => 
-                            person.Name == name
-                            && person.Age < 30
-                            && person.Age > 15
-
+                 //.Where(IsValid)
+                 .Where(person =>
+                 person.Name == "hasan" &&
+                 person.Age < 30 
+                 || person.Id == 5
                  ).FirstOrDefault();
 
-            Person? result2 =
-                personList
-                .FirstOrDefault(person => person.Name == name);
-
             return result;
+        }
+
+        public static bool IsValid(Person person)
+        {
+            return person.Name == "hasan" && person.Age < 30;
         }
     }
     public class Person
