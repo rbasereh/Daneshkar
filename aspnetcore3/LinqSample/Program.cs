@@ -32,7 +32,16 @@
             //Person? result2 = personList.LastOrDefault(e => e.Id == 6);
             //Person? result = personList.Single(e => e.Id == 10);
             Person? result = personList.SingleOrDefault(e => e.Id == 10);
+            /*
+                                               return 
+            First/Last                         1-n  => 1
+            FirstOrDefault/LastOrDefault       0-n  => 1
+            
+            Single                             1 
+            SingleOrDefault
 
+
+            */
             return result;
 
 
