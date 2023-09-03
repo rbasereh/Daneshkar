@@ -28,23 +28,31 @@
                 new Person(4, "reza", 50),
             };
 
+            //Person? result = personList.FirstOrDefault(e => e.Id == 6);
+            //Person? result2 = personList.LastOrDefault(e => e.Id == 6);
+            //Person? result = personList.Single(e => e.Id == 10);
+            Person? result = personList.SingleOrDefault(e => e.Id == 10);
+
+            return result;
+
+
             //for (int i = 0; i < personList.Count; i++)
             //{
             //    if (personList[i].Name == name)
             //        return personList[i];
             //}
-            Func<Person, bool> isvalidfunc = IsValid;
+            //Func<Person, bool> isvalidfunc = IsValid;
 
-            Person? result =
-                 personList
-                 //.Where(IsValid)
-                 .Where(person =>
-                 person.Name == "hasan" &&
-                 person.Age < 30 
-                 || person.Id == 5
-                 ).FirstOrDefault();
+            //Person? result =
+            //     personList
+            //     //.Where(IsValid)
+            //     .Where(person =>
+            //     person.Name == "hasan" &&
+            //     person.Age < 30 
+            //     || person.Id == 5
+            //     ).FirstOrDefault();
 
-            return result;
+            return null;
         }
 
         public static bool IsValid(Person person)
