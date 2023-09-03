@@ -33,36 +33,21 @@
             //    if (personList[i].Name == name)
             //        return personList[i];
             //}
-            /*
-             List<Person> result = 
-                 personList
-                 .Where(person => person.Name == name).ToList();
 
-             if (result.Count == 0)
-                 return null;
-             else
-                 return result.Last();
-             */
-
-            Person result =
+            Person? result =
                  personList
-                 .Where(person => person.Name == name).LastOrDefault();
+                 .Where(person => 
+                            person.Name == name
+                            && person.Age < 30
+                            && person.Age > 15
+
+                 ).FirstOrDefault();
+
+            Person? result2 =
+                personList
+                .FirstOrDefault(person => person.Name == name);
+
             return result;
-
-            /*
-            Person result2 =
-                personList
-                .Last(person => person.Name == name);
-
-            Person resul3 =
-               personList
-               .Where(person => person.Name == name).First();
-
-            Person result4 =
-                personList
-                .First(person => person.Name == name);
-            */
-
         }
     }
     public class Person
