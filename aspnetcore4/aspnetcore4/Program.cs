@@ -5,7 +5,7 @@
         static void Main(string[] args)
         {
             LinqSamples linqSample = new();
-            linqSample.join();
+            linqSample.OtherMethods();
         }
     }
 }

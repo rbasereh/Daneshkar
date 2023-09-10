@@ -172,10 +172,45 @@ namespace aspnetcore4
                     person = person.Name,
                     personage = person.Age,
                 }
-               ).ToList();
+               )
+               .ToList();
 
         }
 
+        internal void UnionSample()
+        {
+            List<int> list1 = new List<int>() { 1, 4, 5, 6 };
+            List<int> list2 = new List<int>() { 1, 4, 7, 8 };
+
+            List<int> list3 = new();
+            list3.AddRange(list1);
+            list3.AddRange(list2);
+            var result = list3.Distinct().ToList();
+
+            var resul2 = list1.Union(list2).ToList();
+        }
+        internal void ExceptIntersectSample()
+        {
+            List<int> list1 = new List<int>() { 1, 4, 5, 6 };
+            List<int> list2 = new List<int>() { 1, 4, 7, 8 };
+
+            List<int> list3 = new();
+
+
+            var resul2 = list1.Except(list2).ToList();
+            var resul3 = list1.Intersect(list2).ToList();
+
+        }
+
+        internal void OtherMethods()
+        {
+            var result = Enumerable.Range(5, 9).ToList();
+            result.Reverse();
+
+            Person person = new Person(1, "Ali", 10);
+            var result2 = Enumerable.Repeat(person, 10).ToList();
+
+        }
     }
     public class PersonGroup
     {
