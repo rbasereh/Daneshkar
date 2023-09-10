@@ -67,13 +67,23 @@ namespace LinqSample
         public void SkipSample()
         {
             var result = PersonList.Skip(5).Where(e => e.Age > 10).ToList();
-            
-            var result2 = PersonList.Where(e=>e.Name == "hasan")
+
+            var result2 = PersonList.Where(e => e.Name == "hasan")
                                 .Skip(1).First();
-        
+
 
             var result4 = PersonList.Where(e => e.Name == "hasan")
-                                .Skip(1).Take(2).ToList();
+                                .Skip(3).Take(2).ToList();
+
+
+            PersonList.OrderBy(e => e.Age);
+        }
+
+        public void PagingMethod(int page = 1)
+        {
+            int pagesize = 20;
+            var p1 = PersonList.Skip((page - 1) * pagesize)
+                            .Take(pagesize).ToList();
         }
 
     }
