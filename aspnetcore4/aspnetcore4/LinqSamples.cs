@@ -169,11 +169,10 @@ namespace aspnetcore4
                 new
                 {
                     order = order,
-                    person = person,
+                    person = person.Name,
+                    personage = person.Age,
                 }
                ).ToList();
-
-            var orderPersonNames = list2.Select(e => e.person.Name).Distinct().ToList();
 
         }
 
