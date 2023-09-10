@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,18 +15,27 @@ namespace aspnetcore4
             PersonList = new()
             {
                 new Person(1, "ali", 30),
-                new Person(3, "reza", 30),
-                new Person(6, "hasan", 60),
-                new Person(6, "hasan", 45),
-                new Person(5, "hasan", 19),
-                new Person(4, "reza", 50),
-                new Person(8, "hasan", 70),
                 new Person(2, "reza", 20),
-                new Person(6, "hasan", 45),
+                new Person(3, "reza", 30),
+                new Person(4, "reza", 50),
+                new Person(5, "hasan", 19),
+                new Person(6, "hasan", 60),
+                new Person(7, "hasan", 70),
             };
 
+            OrderList = new()
+            {
+                new OrderRequest(1,"Apple",1),
+                new OrderRequest(2,"LG",1),
+                new OrderRequest(3,"Apple",3),
+                new OrderRequest(4,"LG",3),
+                new OrderRequest(5,"LG",2),
+                new OrderRequest(6,"LG",4),
+                new OrderRequest(7,"Apple",5),
+            };
         }
         public List<Person> PersonList { get; }
+        public List<OrderRequest> OrderList { get; }
 
         //Linq intro
 
@@ -97,10 +107,81 @@ namespace aspnetcore4
             List<Person[]> result = PersonList.Chunk(4)
                 .ToList();
 
-           var arr1 = result[0];
-           var arr2 = result[1];
-           var arr3 = result[2];
+            foreach (Person[] arr in result)
+            {
+                foreach (Person person in arr)
+                {
+                    //Person
+                }
+            }
+            //var s = result[0][1];
+            //Person[] arr1 = result[0];
+            //Person person1 = arr1[0];
+            //var arr2 = result[1];
+            //var arr3 = result[2];
         }
+        internal void GroupBySample()
+        {
+            var result = PersonList.GroupBy(e => e.Name)
+                // .Select(e => new { name = e.Key, listpersons = e.ToList() })
+                .Select(e => new PersonGroup() { GroupName = e.Key, PersonList = e.ToList() })
+                .ToList();
+
+            var grouplist = PersonList.GroupBy(e => e.Name);
+
+            foreach (var group in grouplist)
+            {
+
+            }
+
+        }
+        void ForeachSample()
+        {
+            foreach (Person person in PersonList)
+            {
+                SendSms(person);
+            }
+
+            PersonList.ForEach(e => SendSms(e));
+
+            PersonList.ForEach(e =>
+            {
+                SendSms(e);
+                //... 
+            });
+        }
+
+        private void SendSms(Person e)
+        {
+            //throw new NotImplementedException();
+        }
+
+        internal void join()
+        {
+
+            var list = OrderList.Select(e => e.PersonId).ToList();
+
+            var list2 = OrderList.Join(
+                PersonList,
+                order => order.PersonId,
+                person => person.Id,
+                (order, person) =>
+                new
+                {
+                    order = order,
+                    person = person,
+                }
+               ).ToList();
+
+            var orderPersonNames = list2.Select(e => e.person.Name).Distinct().ToList();
+
+        }
+
+    }
+    public class PersonGroup
+    {
+        public string GroupName { get; set; }
+        public List<Person> PersonList { get; set; }
     }
     public class Person
     {
@@ -114,5 +195,20 @@ namespace aspnetcore4
 
         public string Name { get; set; }
         public int Age { get; set; }
+    }
+
+    public class OrderRequest
+    {
+
+        public OrderRequest(int id, string orderDecription, int personId)
+        {
+            Id = id;
+            OrderDecription = orderDecription;
+            PersonId = personId;
+        }
+
+        public int Id { get; set; }
+        public string OrderDecription { get; set; }
+        public int PersonId { get; set; }
     }
 }
