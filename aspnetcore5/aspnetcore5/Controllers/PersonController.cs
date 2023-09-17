@@ -7,24 +7,24 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using aspnetcore5.Data;
 using aspnetcore5.Models;
+using aspnetcore5.Service;
 
 namespace aspnetcore5.Controllers
 {
     public class PersonController : Controller
     {
-        private readonly Database _context;
+        private readonly PersonService _service;
 
-        public PersonController(Database context)
+        public PersonController(PersonService service)
         {
-            _context = context;
+            _service = service;
         }
 
         // GET: Person
         public async Task<IActionResult> Index()
         {
-            return _context.PersonList != null ?
-                        View(_context.PersonList) :
-                        Problem("Entity set 'AppDbContext.Person'  is null.");
+            var persons = _service.GetAll();
+            return View(persons);
         }
         public IActionResult Create()
         {
@@ -36,7 +36,7 @@ namespace aspnetcore5.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.PersonList.Add(person);
+                _service.Create(person);
                 return RedirectToAction(nameof(Index));
             }
             return View(person);
@@ -45,8 +45,8 @@ namespace aspnetcore5.Controllers
         {
             if (id == null)
                 return NotFound();
-           
-            var person = _context.PersonList.SingleOrDefault(e => e.Id == id);
+
+            var person = _service.Find(id);
 
             if (person == null)
                 return NotFound();

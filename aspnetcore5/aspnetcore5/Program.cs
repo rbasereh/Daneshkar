@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using aspnetcore5.Data;
+using aspnetcore5.Service;
+
 namespace aspnetcore5
 {
     public class Program
@@ -12,6 +14,7 @@ namespace aspnetcore5
                 options.UseSqlServer(builder.Configuration.GetConnectionString("AppDbContext") ?? throw new InvalidOperationException("Connection string 'AppDbContext' not found.")));
 
             builder.Services.AddSingleton<Database>();
+            builder.Services.AddScoped<PersonService>();
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
