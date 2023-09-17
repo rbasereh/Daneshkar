@@ -12,9 +12,9 @@ namespace aspnetcore5.Controllers
 {
     public class PersonController : Controller
     {
-        private readonly AppDbContext _context;
+        private readonly Database _context;
 
-        public PersonController(AppDbContext context)
+        public PersonController(Database context)
         {
             _context = context;
         }
@@ -22,9 +22,9 @@ namespace aspnetcore5.Controllers
         // GET: Person
         public async Task<IActionResult> Index()
         {
-              return _context.Person != null ? 
-                          View(await _context.Person.ToListAsync()) :
-                          Problem("Entity set 'AppDbContext.Person'  is null.");
+            return _context.PersonList != null ?
+                        View(_context.PersonList) :
+                        Problem("Entity set 'AppDbContext.Person'  is null.");
         }
         public IActionResult Create()
         {
@@ -32,18 +32,27 @@ namespace aspnetcore5.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,LName")] Person person)
+        public async Task<IActionResult> Create(Person person)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(person);
-                await _context.SaveChangesAsync();
+                _context.PersonList.Add(person);
                 return RedirectToAction(nameof(Index));
             }
             return View(person);
         }
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+                return NotFound();
+           
+            var person = _context.PersonList.SingleOrDefault(e => e.Id == id);
 
+            if (person == null)
+                return NotFound();
+
+            return View(person);
+        }
 
     }
 }

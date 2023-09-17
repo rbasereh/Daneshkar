@@ -11,6 +11,7 @@ namespace aspnetcore5
             builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("AppDbContext") ?? throw new InvalidOperationException("Connection string 'AppDbContext' not found.")));
 
+            builder.Services.AddSingleton<Database>();
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
