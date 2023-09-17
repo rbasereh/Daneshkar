@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33723.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "aspnetcore5", "aspnetcore5\aspnetcore5.csproj", "{99B0AE79-A1BC-48DE-82AE-01F959F3AD1E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThreadSamples", "ThreadSamples\ThreadSamples.csproj", "{F3B9E9E7-B4FF-4C9D-A35B-49971E7F9C92}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{99B0AE79-A1BC-48DE-82AE-01F959F3AD1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99B0AE79-A1BC-48DE-82AE-01F959F3AD1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99B0AE79-A1BC-48DE-82AE-01F959F3AD1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99B0AE79-A1BC-48DE-82AE-01F959F3AD1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3B9E9E7-B4FF-4C9D-A35B-49971E7F9C92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3B9E9E7-B4FF-4C9D-A35B-49971E7F9C92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3B9E9E7-B4FF-4C9D-A35B-49971E7F9C92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3B9E9E7-B4FF-4C9D-A35B-49971E7F9C92}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {796663B7-5871-47E6-99C6-A4BB174795F1}
+	EndGlobalSection
+EndGlobal
