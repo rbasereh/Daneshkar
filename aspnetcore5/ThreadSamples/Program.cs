@@ -5,7 +5,7 @@
         static void Main(string[] args)
         {
             ThreadSample threadSample = new();
-            threadSample.RunThread();
+            threadSample.RunThread().GetAwaiter().GetResult();
         }
     }
 }

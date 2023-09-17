@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,28 +15,48 @@ namespace ThreadSamples
             Count = 0;
         }
         public int Count { get; set; }
-        public void RunThread()
+        public async Task RunThread()
         {
             var watch = Stopwatch.StartNew();
-            
-            Run();
-            
+
+            //Run();
+            /*
             Thread t1 = new(Run);
-            
+            t1.Start();
+            Thread t2 = new(Run);
+            t2.Start();
+            t1.Join();
+            t2.Join();
+            */
+
+
+
+            //int result = await Run("a", 20);
+            //int result2 = await Run("b", 10);
+
+
+            var result3 = await Task.WhenAll(
+                Run("a", 20),
+                Run("b", 10)
+                );
+
+
+            Console.WriteLine("Done");
             watch.Stop();
         }
-        void Run()
+        async Task<int> Run(string taskname, int delay)
         {
-            Console.WriteLine("Start");
+            //Console.WriteLine("Start");
             for (int i = 0; i < 10; i++)
             {
-                Console.WriteLine(Count + "*");
+                Console.WriteLine($"TaskName : {taskname} , Count : {Count}, ThreadId : {Thread.CurrentThread.ManagedThreadId}");
                 //File.WriteAllText("D:\\test.txt", Count + "*");
                 Count++;
-                Thread.Sleep(100);
+                await Task.Delay(delay);
             }
-            Console.WriteLine("End");
+            return delay + 5;
+            //Console.WriteLine("End");
         }
-       
+
     }
 }
