@@ -14,7 +14,7 @@ namespace aspnetcore6.Data
         {
 
         }
-
+       
         public DbSet<Person> Person { get; set; }
     }
 }

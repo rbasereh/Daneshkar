@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using aspnetcore6.Data;
 using aspnetcore6.Models;
+using NuGet.Common;
+using aspnetcore6.Services;
 
 namespace aspnetcore6.Controllers
 {
@@ -14,17 +16,26 @@ namespace aspnetcore6.Controllers
     {
         private readonly AppDbContext _context;
 
-        public PersonController(AppDbContext context)
+        public PersonService PersonService { get; }
+
+        public PersonController(AppDbContext context
+            , PersonService personService)
         {
             _context = context;
+            PersonService = personService;
         }
 
-        // GET: Person
+
+        public IActionResult Index2()
+        {
+            var List = PersonService.GetAll();
+            return View(List);
+        }
+
         public async Task<IActionResult> Index()
         {
-              return _context.Person != null ? 
-                          View(await _context.Person.ToListAsync()) :
-                          Problem("Entity set 'AppDbContext.Person'  is null.");
+            var List = await PersonService.GetAllAsync();
+            return View(List);
         }
 
         // GET: Person/Details/5
@@ -56,7 +67,7 @@ namespace aspnetcore6.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Address,City")] Person person)
+        public async Task<IActionResult> Create(Person person)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +99,7 @@ namespace aspnetcore6.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Address,City")] Person person)
+        public async Task<IActionResult> Edit(int id, Person person)
         {
             if (id != person.Id)
             {
@@ -150,14 +161,14 @@ namespace aspnetcore6.Controllers
             {
                 _context.Person.Remove(person);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool PersonExists(int id)
         {
-          return (_context.Person?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Person?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
