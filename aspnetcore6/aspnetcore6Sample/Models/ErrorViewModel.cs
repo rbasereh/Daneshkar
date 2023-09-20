@@ -1,3 +1,5 @@
+using System.Xml.Linq;
+
 namespace aspnetcore6Sample.Models
 {
     public class ErrorViewModel
