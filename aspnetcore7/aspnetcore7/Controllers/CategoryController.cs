@@ -45,7 +45,8 @@ namespace aspnetcore7.Controllers
         {
             var category = await Service.GetAsync(id);
             //var productList = await ProductService.GetListAsync();
-            //var targetproducts = productList.Where(e => e.CategoryId == id);
+            //var targetproducts = productList.Where(e => e.CategoryId == id).ToList();
+            //category.ProductList = targetproducts;
 
             return View(category);
         }
