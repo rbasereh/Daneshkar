@@ -29,9 +29,8 @@ namespace aspnetcore7.Controllers
         public async Task<IActionResult> Create(Category category)
         {
             if (category.Name.Length < 3)
-            {
-                ModelState.AddModelError("Name", "عنوان دسته بندی باید بیشتر از کلمه باشد");
-            }
+                ModelState.AddModelError("Name", "عنوان دسته بندی باید بیشتر از 3 حرف باشد");
+            
             if (ModelState.IsValid)
             {
                 await Service.Create(category);

@@ -15,6 +15,7 @@ namespace aspnetcore7
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddScoped<CategoryService>();
+            builder.Services.AddScoped<ProductService>();
 
             var app = builder.Build();
 
