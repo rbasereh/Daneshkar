@@ -16,7 +16,7 @@ namespace aspnetcore7.Services
 
         public async Task<List<Product>> GetListAsync()
         {
-            return await context.Product.ToListAsync();
+            return await context.Product.Include(e => e.Category).ToListAsync();
         }
         public async Task<Product> Create(Product Product)
         {

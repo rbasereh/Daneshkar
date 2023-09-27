@@ -2,14 +2,18 @@
 using aspnetcore7.Models;
 using aspnetcore7.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace aspnetcore7.Controllers
 {
     public class ProductController : Controller
     {
-        public ProductController(ProductService service)
+        private readonly CategoryService categoryService;
+
+        public ProductController(ProductService service, CategoryService categoryService)
         {
             Service = service;
+            this.categoryService = categoryService;
         }
 
         public ProductService Service { get; }
@@ -20,8 +24,10 @@ namespace aspnetcore7.Controllers
             return View(list);
         }
 
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            var allcategories = await categoryService.GetListAsync();
+            ViewData["CategoryId"] = new SelectList(allcategories, "Id", "Name");
             return View();
         }
 
@@ -33,7 +39,6 @@ namespace aspnetcore7.Controllers
             if (Product.CategoryId <= 0)
                 ModelState.AddModelError("CategoryId", "ثبت دسته بندی درمحصول اجباری است");
 
-            ModelState.AddModelError("Price", "قیمت کالا معتبر نیست");
             if (ModelState.IsValid)
             {
                 await Service.Create(Product);
