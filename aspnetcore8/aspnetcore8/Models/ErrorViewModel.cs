@@ -6,4 +6,6 @@ namespace aspnetcore8.Models
 
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
     }
+
+
 }

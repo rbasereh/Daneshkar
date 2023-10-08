@@ -20,15 +20,24 @@ namespace aspnetcore8.Data
             modelBuilder.Entity<PersonTpt>().UseTptMappingStrategy();
             modelBuilder.Entity<StudentTpt>().ToTable("StudentsTpt");
             modelBuilder.Entity<TeacherTpt>().ToTable("TeachersTpt");
+
+
+            modelBuilder.Entity<PersonTPH>().ToTable("AllPersonModel");
+
             base.OnModelCreating(modelBuilder);
         }
-        public DbSet<Person> Person { get; set; } 
+        public DbSet<Person> Person { get; set; }
         public DbSet<Student> Student { get; set; }
         public DbSet<Teacher> Teacher { get; set; }
 
         public DbSet<PersonTpt> PersonTpt { get; set; }
         public DbSet<StudentTpt> StudentTpt { get; set; }
         public DbSet<TeacherTpt> TeacherTpt { get; set; }
+
+
+        public DbSet<PersonTPH> PersonTPH { get; set; }
+        public DbSet<StudentTPH> StudentTPH { get; set; }
+        public DbSet<TeacherTPH> TeacherTPH { get; set; }
 
     }
 }
