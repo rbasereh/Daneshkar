@@ -1,4 +1,5 @@
 using aspnetcore8.Data;
+using aspnetcore8.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace aspnetcore8
@@ -13,7 +14,7 @@ namespace aspnetcore8
                     option.UseSqlServer(builder.Configuration.GetConnectionString("AppDbContext")));
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-
+            builder.Services.AddScoped<PersonService>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
