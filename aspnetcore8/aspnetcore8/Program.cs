@@ -1,3 +1,6 @@
+using aspnetcore8.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace aspnetcore8
 {
     public class Program
@@ -6,6 +9,8 @@ namespace aspnetcore8
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Services.AddDbContext<AppDbContext>(option =>
+                    option.UseSqlServer(builder.Configuration.GetConnectionString("AppDbContext")));
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
