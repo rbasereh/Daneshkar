@@ -13,17 +13,17 @@ namespace aspnetcore8.Services
         }
         internal void CreatePerson(Person person)
         {
-            var student1 = new Student()
+            var student1 = new StudentTpt()
             {
                 LName = person.Name,
-                Name = person.Name,
+                Name = person.LName,
                 StudentCode = "10",
             };
 
-            var teacher = new Teacher()
+            var teacher = new TeacherTpt()
             {
                 LName = person.Name,
-                Name = person.Name,
+                Name = person.LName,
                 Age = 30,
                 PropertyX = "Test"
             };
@@ -35,6 +35,11 @@ namespace aspnetcore8.Services
 
         internal List<Person> GetAllPerson()
         {
+
+            var StudentList = dbContext.Student.ToList();
+
+            var StudentTptList = dbContext.StudentTpt.ToList();
+
             var personList = dbContext.Person.ToList();
             return personList;
         }
