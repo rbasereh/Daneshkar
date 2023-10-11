@@ -1,15 +1,20 @@
 ﻿using aspnetcore9.Data;
+using aspnetcore9.Models;
 
 namespace aspnetcore9.Services
 {
-    public class SmartphoneService
+    public class SmartphoneService : ProductService
     {
-        private readonly AppDbContext appDbContext;
 
-        public SmartphoneService(AppDbContext appDbContext)
+        public SmartphoneService(AppDbContext appDbContext) : base(appDbContext)
         {
-            this.appDbContext = appDbContext;
+
         }
 
+        internal List<SmartPhoneProduct> GetAll()
+        {
+            var data = appDbContext.SmartPhoneProduct.ToList();
+            return data;
+        }
     }
 }

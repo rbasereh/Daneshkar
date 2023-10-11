@@ -1,4 +1,4 @@
-﻿@model IEnumerable<aspnetcore9.Models.LaptopProduct>
+﻿@model IEnumerable<aspnetcore9.Models.SmartPhoneProduct>
 
 @{
     ViewData["Title"] = "Index";
@@ -22,10 +22,7 @@
                 @Html.DisplayNameFor(model => model.Description)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.HDD)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SSD)
+                @Html.DisplayNameFor(model => model.RAM)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CpuGen)
@@ -46,10 +43,7 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.HDD)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SSD)
+                @Html.DisplayFor(modelItem => item.RAM)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CpuGen)
