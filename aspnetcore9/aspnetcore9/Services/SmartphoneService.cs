@@ -16,5 +16,20 @@ namespace aspnetcore9.Services
             var data = appDbContext.SmartPhoneProduct.ToList();
             return data;
         }
+
+        internal SmartPhoneProduct? GetProduct(int? id)
+        {
+            return appDbContext.SmartPhoneProduct.SingleOrDefault(e => e.Id == id);
+        }
+
+        internal void UpdateProduct(SmartPhoneProduct product)
+        {
+            //var oldProduct = appDbContext.SmartPhoneProduct
+            //        .SingleOrDefault(e => e.Id == product.Id);
+
+            appDbContext.Update(product);
+            appDbContext.SaveChanges();
+
+        }
     }
 }

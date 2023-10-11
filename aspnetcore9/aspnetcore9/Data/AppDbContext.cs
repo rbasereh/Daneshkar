@@ -1,5 +1,6 @@
 ﻿using aspnetcore9.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace aspnetcore9.Data
 {
@@ -7,7 +8,6 @@ namespace aspnetcore9.Data
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
-
         }
 
         public DbSet<Product> Product { get; set; }
@@ -18,6 +18,12 @@ namespace aspnetcore9.Data
         {
             modelBuilder.Entity<Product>().ToTable("Products");
 
+            //modelBuilder.Entity<Product>().UseTptMappingStrategy();
+            //modelBuilder.Entity<LaptopProduct>().ToTable("LaptopProduct");
+            //modelBuilder.Entity<SmartPhoneProduct>().ToTable("SmartPhoneProduct");
+
+            //modelBuilder.Entity<LaptopProduct>().UseTpcMappingStrategy().ToTable("LaptopProduct");
+            //modelBuilder.Entity<SmartPhoneProduct>().UseTpcMappingStrategy().ToTable("SmartPhoneProduct");
             base.OnModelCreating(modelBuilder);
         }
 

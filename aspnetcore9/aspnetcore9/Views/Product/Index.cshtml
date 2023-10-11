@@ -1,4 +1,4 @@
-﻿@model IEnumerable<aspnetcore9.Models.SmartPhoneProduct>
+﻿@model IEnumerable<aspnetcore9.Models.Product>
 
 @{
     ViewData["Title"] = "Index";
@@ -22,12 +22,6 @@
                 @Html.DisplayNameFor(model => model.Description)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.RAM)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CpuGen)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Price)
             </th>
             <th></th>
@@ -47,16 +41,10 @@
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.RAM)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CpuGen)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.Price)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new {  id=item.Id    }) |
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
                     @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                     @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
                 </td>

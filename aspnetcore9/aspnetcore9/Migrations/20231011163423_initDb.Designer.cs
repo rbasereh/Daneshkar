@@ -11,7 +11,7 @@ using aspnetcore9.Data;
 namespace aspnetcore9.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231011151437_initDb")]
+    [Migration("20231011163423_initDb")]
     partial class initDb
     {
         /// <inheritdoc />
@@ -43,6 +43,9 @@ namespace aspnetcore9.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 

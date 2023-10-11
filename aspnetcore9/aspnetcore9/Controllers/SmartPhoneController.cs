@@ -32,5 +32,23 @@ namespace aspnetcore9.Controllers
             }
             return View(product);
         }
+        public IActionResult Edit(int? id) 
+        {
+            SmartPhoneProduct? product = service.GetProduct(id);
+            if (product == null)
+                return NotFound();
+            return View(product);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(int id,SmartPhoneProduct product)
+        {
+            if (ModelState.IsValid)
+            { 
+                service.UpdateProduct(product);
+                return RedirectToAction("Index");
+            }
+            return View(product);
+        }
     }
 }
