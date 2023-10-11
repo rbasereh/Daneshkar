@@ -1,5 +1,6 @@
 ﻿using aspnetcore9.Data;
 using aspnetcore9.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 
 namespace aspnetcore9.Services
@@ -33,37 +34,66 @@ namespace aspnetcore9.Services
 
         internal void updateAllProduct()
         {
+            //2000
+            //#region Code
 
-            //for (int i = 0; i < 10; i++)
+            //var products = appDbContext.Product.ToList();
+            //foreach (var product in products)
             //{
-            //    var x = new SmartPhoneProduct()
+            //    if (product is SmartPhoneProduct)
             //    {
-            //        Name = "SmartPhone" + i.ToString(),
-            //        Description = " - ",
-            //        Price = 10 * i,
-            //        RAM = 5,
-            //    };
-            //    var x2 = new LaptopProduct()
-            //    {
-            //        Name = "LaptopProduct" + i.ToString(),
-            //        Description = " - ",
-            //        Price = 10 * i,
-            //        HDD = 10
-            //    };
-            //    appDbContext.Add(x);
-            //    appDbContext.Add(x2);
+            //        product.Price += 10;
+            //    }
+            //    appDbContext.SaveChanges();
+            //}
+            //#endregion
+
+            #region Refactor
+            //var products = appDbContext.Product.OfType<SmartPhoneProduct>().ToList();
+            //foreach (var product in products)
+            //{
+            //    product.Price += 10;
             //}
             //appDbContext.SaveChanges();
+            #endregion
+            //IEnumerable
+            //IQueryable
+            var products = appDbContext.Product.OfType<SmartPhoneProduct>();
 
-            var products = appDbContext.Product.ToList();
-            foreach (var product in products)
-            {
-                if (product is SmartPhoneProduct)
-                {
-                    product.Price += 10;
-                }
-                appDbContext.SaveChanges();
-            }
+            products = products.Where(e => e.Price > 1000);
+
+            products = products.Where(e => e.RAM != null);
+
+            var result = products.ToList();
+
+
+
+            var updateProductTest = appDbContext.LaptopProduct.AsNoTracking().FirstOrDefault();
+
+            updateProductTest.Price++;
+
+            var originalValue = appDbContext.Entry(updateProductTest).OriginalValues;
+            var value = originalValue.GetValue<decimal>(nameof(updateProductTest.Price));
+         
+            var current = appDbContext.Entry(updateProductTest).CurrentValues;
+            var currentvalue = current.GetValue<decimal>(nameof(updateProductTest.Price));
+
+            //appDbContext.Update(updateProductTest);
+            appDbContext.Attach(updateProductTest);
+            var updateProductTestState = appDbContext.Entry(updateProductTest);
+
+
+            //var newProduct = new SmartPhoneProduct() { Name = "Test", Description = "", CpuGen = 10 };
+            //appDbContext.Add(newProduct);
+            //var newProductState = appDbContext.Entry(newProduct);
+
+            var deleteProductTest = appDbContext.SmartPhoneProduct.AsNoTracking().FirstOrDefault();
+            appDbContext.Remove(deleteProductTest);
+            var deleteProductTestState = appDbContext.Entry(deleteProductTest);
+
+
+            //appDbContext.Entry(product).State
+            appDbContext.SaveChanges();
         }
     }
 }
