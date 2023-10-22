@@ -1,20 +1,24 @@
-﻿using aspnetcore9.Models;
+﻿using aspnetcore9.Domain.Commands;
+using aspnetcore9.Domain.Queries;
+using aspnetcore9.Models;
 using aspnetcore9.Services;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace aspnetcore9.Controllers
 {
     public class LaptopController : Controller
     {
-        private readonly LaptopService service;
+        public IMediator Mediator { get; }
 
-        public LaptopController(LaptopService service)
+        public LaptopController(IMediator mediator)
         {
-            this.service = service;
+            Mediator = mediator;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            List<LaptopProduct> products = service.GetAll();
+            GetAllProductQuery query = new();
+            List<LaptopProduct> products = await Mediator.Send(query);
             return View(products);
         }
         public IActionResult Create()
@@ -25,15 +29,12 @@ namespace aspnetcore9.Controllers
         [HttpPost]
         public IActionResult Create(LaptopProduct product)
         {
-            //if (product.Name.Length < 3
-            //    )
-            //{
-            //    ModelState.AddModelError("Name", "نام محصول معتبر نیست");
-            //}
+            CreateLaptopCommand command = new() { LaptopProduct = product };
 
             if (ModelState.IsValid)
             {
-                service.CreateProduct(product);
+                Mediator.Send(command);
+                //service.CreateProduct(product);
                 return RedirectToAction("Index");
             }
             return View(product);
