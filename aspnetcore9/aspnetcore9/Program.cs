@@ -1,6 +1,9 @@
 using aspnetcore9.Controllers;
 using aspnetcore9.Data;
+using aspnetcore9.Models;
 using aspnetcore9.Services;
+using aspnetcore9.Validations;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 
 namespace aspnetcore9
@@ -15,10 +18,11 @@ namespace aspnetcore9
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<AppDbContext>(op =>
                 op.UseSqlServer(builder.Configuration.GetConnectionString("AppDbContext")));
-
+            builder.Services.AddAutoMapper(typeof(Program).Assembly);
             builder.Services.AddScoped<LaptopService>();
             builder.Services.AddScoped<SmartphoneService>();
-            builder.Services.AddScoped<ProductService>(); 
+            builder.Services.AddScoped<ProductService>();
+            builder.Services.AddScoped<IValidator<Product>, ProductValidator>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

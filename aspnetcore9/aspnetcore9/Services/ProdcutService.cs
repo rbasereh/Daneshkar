@@ -1,5 +1,9 @@
 ﻿using aspnetcore9.Data;
+using aspnetcore9.Dtos;
 using aspnetcore9.Models;
+using aspnetcore9.Validations;
+using AutoMapper;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using System;
 
@@ -8,15 +12,27 @@ namespace aspnetcore9.Services
     public class ProductService
     {
         protected readonly AppDbContext appDbContext;
+        private readonly IMapper mapper;
+        private readonly IValidator<Product> validationRules;
 
-        public ProductService(AppDbContext appDbContext)
+        public ProductService(AppDbContext appDbContext, IMapper mapper
+            , IValidator<Product> validationRules)
         {
             this.appDbContext = appDbContext;
+            this.mapper = mapper;
+            this.validationRules = validationRules;
         }
         internal void CreateProduct(Product product)
         {
-            appDbContext.Add(product);
-            appDbContext.SaveChanges();
+            //if (product.Name.Length < 3)
+            //    throw new Exception();
+
+            var result = validationRules.Validate(product);
+            if (result.IsValid)
+            {
+                appDbContext.Add(product);
+                appDbContext.SaveChanges();
+            }
         }
 
         internal List<Product> GetAll()
@@ -31,6 +47,42 @@ namespace aspnetcore9.Services
             //products.AddRange(smartPhoneProducts);
             //return products;
         }
+        internal List<ProductDto> GetAllProductForCustomer()
+        {
+            //mapper
+            var productdtos = appDbContext.Product
+                .Select(e => mapper.Map<ProductDto>(e))
+                //.Select(e => new ProductDto() { Name = e.Name, Id = e.Id })
+                .ToList();
+
+
+            Product product = new()
+            {
+                Id = 10,
+                Name = "XPro",
+                Description = "Mobile",
+                Price = 100
+            };
+
+            ProductDto productDto = new();
+
+            //productDto = product;
+            productDto = mapper.Map<ProductDto>(product);
+
+            var newProduct = mapper.Map<Product>(productDto);
+
+
+            Person person = new()
+            {
+                Id = 10,
+                Name = "ali",
+                LName = "Saberi"
+            };
+            PersonDto persondto = mapper.Map<PersonDto>(person);
+
+            return productdtos;
+        }
+
 
         internal void updateAllProduct()
         {
@@ -74,7 +126,7 @@ namespace aspnetcore9.Services
 
             var originalValue = appDbContext.Entry(updateProductTest).OriginalValues;
             var value = originalValue.GetValue<decimal>(nameof(updateProductTest.Price));
-         
+
             var current = appDbContext.Entry(updateProductTest).CurrentValues;
             var currentvalue = current.GetValue<decimal>(nameof(updateProductTest.Price));
 
@@ -96,4 +148,21 @@ namespace aspnetcore9.Services
             appDbContext.SaveChanges();
         }
     }
+    //public static class ProductMapper
+    //{
+
+    //    public static ProductDto MapProduct(this Product product)
+    //    {
+    //        return new ProductDto
+    //        {
+    //            Id = product.Id,
+    //            Name = product.Name,
+    //            //Retails = product.ProductReatils
+    //                    .Select(e => new RetailDto() { Name = e.Retail.Name })
+    //                    .ToList(),
+    //        };
+    //    }
+
+    //}
+
 }

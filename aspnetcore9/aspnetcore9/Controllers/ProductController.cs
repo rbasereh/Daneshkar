@@ -15,8 +15,13 @@ namespace aspnetcore9.Controllers
 
         public IActionResult Index()
         {
-            service.updateAllProduct();
+            //service.updateAllProduct();
             var data = service.GetAll();
+            return View(data);
+        }
+        public IActionResult AllProducts()
+        {
+            var data = service.GetAllProductForCustomer();
             return View(data);
         }
     }

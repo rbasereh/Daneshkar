@@ -25,11 +25,11 @@ namespace aspnetcore9.Controllers
         [HttpPost]
         public IActionResult Create(LaptopProduct product)
         {
-            if (product.Name.Length < 3
-                )
-            {
-                ModelState.AddModelError("Name", "نام محصول معتبر نیست");
-            }
+            //if (product.Name.Length < 3
+            //    )
+            //{
+            //    ModelState.AddModelError("Name", "نام محصول معتبر نیست");
+            //}
 
             if (ModelState.IsValid)
             {
